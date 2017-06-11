@@ -69,7 +69,27 @@ func BenchmarkFunction(b *testing.B) {
 }
 
 func main() {
-	getAllAddresses()
+	//getAllAddresses()
+
+	var mockedInstance address.AddressInstance
+
+	mockedInstance.Id = 12
+	mockedInstance.Recipient_additional = ""
+	mockedInstance.Street = "Teststree 12"
+	mockedInstance.Street_additional = ""
+	mockedInstance.Postcode = "12345"
+	mockedInstance.City = "Berlin"
+	mockedInstance.Company_additional = ""
+	mockedInstance.Lat = 0
+	mockedInstance.Lng = 0
+	mockedInstance.Company_label = ""
+	mockedInstance.Region = ""
+
+
+	var mockedCollection address.AddressCollection
+	mockedCollection.Add(mockedInstance)
+
+	fmt.Println(mockedCollection.Get(12))
 
 	//br := testing.Benchmark(BenchmarkFunction)
 	//fmt.Println(br)

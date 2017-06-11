@@ -18,7 +18,7 @@ type AbstractCollection struct {
 func (collection *AbstractCollection) Get(id int) AbstractModel {
 	for _, item := range collection.models {
 
-		_, ok := item.(AbstractModelInterface) // Kann ich das Item in ein AbstractModel casten?
+		_, ok := item.(AbstractModelInterface)
 		if !ok {
 			fmt.Println("DAMN")
 		} else {
