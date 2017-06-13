@@ -1,23 +1,21 @@
 package main
 
 import (
-	"fmt"
-	"./address"
 	"database/sql"
-	_ "github.com/lib/pq"
+	"fmt"
+	"learning_go/address"
 	"testing"
+
+	_ "github.com/lib/pq"
 )
 
-
-
 const (
-	DB_USER     = "user"
-	DB_PASSWORD = "password"
-	DB_NAME     = "database"
+	DB_USER     = "betainsitu"
+	DB_PASSWORD = "betainsitu"
+	DB_NAME     = "insitu_20170613"
 )
 
 func getAllAddresses() {
-
 
 	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable",
 		DB_USER, DB_PASSWORD, DB_NAME)
@@ -30,7 +28,6 @@ func getAllAddresses() {
 	checkErr(err)
 
 	var collection address.AddressCollection
-
 
 	for rows.Next() {
 		var instance = address.AddressInstance{}
@@ -50,9 +47,7 @@ func getAllAddresses() {
 		collection.Add(instance)
 	}
 
-	fmt.Println(collection.Get(850))
-
-	fmt.Println(collection.Length())
+	// fmt.Println(collection.Length())
 }
 
 func checkErr(err error) {
@@ -69,28 +64,8 @@ func BenchmarkFunction(b *testing.B) {
 }
 
 func main() {
-	//getAllAddresses()
+	// getAllAddresses()
 
-	var mockedInstance address.AddressInstance
-
-	mockedInstance.Id = 12
-	mockedInstance.Recipient_additional = ""
-	mockedInstance.Street = "Teststree 12"
-	mockedInstance.Street_additional = ""
-	mockedInstance.Postcode = "12345"
-	mockedInstance.City = "Berlin"
-	mockedInstance.Company_additional = ""
-	mockedInstance.Lat = 0
-	mockedInstance.Lng = 0
-	mockedInstance.Company_label = ""
-	mockedInstance.Region = ""
-
-
-	var mockedCollection address.AddressCollection
-	mockedCollection.Add(mockedInstance)
-
-	fmt.Println(mockedCollection.Get(12))
-
-	//br := testing.Benchmark(BenchmarkFunction)
-	//fmt.Println(br)
+	br := testing.Benchmark(BenchmarkFunction)
+	fmt.Println(br)
 }

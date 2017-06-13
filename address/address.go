@@ -1,7 +1,7 @@
 package address
 
 import (
-	"gogland_test/datastructures"
+	"learning_go/datastructures"
 )
 
 /*
